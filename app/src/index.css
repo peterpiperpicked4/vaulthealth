@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   PRECISION OBSERVATORY THEME
+   ============================================ */
+
+:root {
+  color-scheme: dark;
+  --void-950: #030508;
+  --void-900: #060a12;
+  --void-850: #0a0e1a;
+  --void-800: #0d1424;
+  --void-700: #131c32;
+  --void-600: #1a2642;
+
+  --cyan-glow: 0 0 20px rgba(6, 182, 212, 0.3);
+  --coral-glow: 0 0 20px rgba(244, 63, 94, 0.3);
+  --emerald-glow: 0 0 20px rgba(16, 185, 129, 0.3);
+}
+
+/* Base */
+body {
+  @apply bg-void-950 text-zinc-400 antialiased;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* Typography */
+.font-mono {
+  font-family: 'JetBrains Mono', 'SF Mono', monospace;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-void-900;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-void-600 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-void-700;
+}
+
+/* ============================================
+   COMPONENT STYLES
+   ============================================ */
+
+/* Metric display */
+.metric-value {
+  @apply font-mono text-metric tracking-tight;
+  text-shadow: 0 0 40px currentColor;
+}
+
+.metric-value-sm {
+  @apply font-mono text-metric-sm tracking-tight;
+}
+
+.metric-label {
+  @apply text-label uppercase tracking-widest text-zinc-500;
+}
+
+/* Data panel */
+.data-panel {
+  @apply bg-void-900/80 backdrop-blur-sm border border-void-700/50 rounded-lg;
+}
+
+.data-panel-header {
+  @apply px-4 py-3 border-b border-void-700/50 flex items-center justify-between;
+}
+
+.data-panel-title {
+  @apply text-xs font-medium uppercase tracking-widest text-zinc-500;
+}
+
+/* Glow effects */
+.glow-cyan {
+  box-shadow: var(--cyan-glow);
+}
+
+.glow-coral {
+  box-shadow: var(--coral-glow);
+}
+
+.glow-emerald {
+  box-shadow: var(--emerald-glow);
+}
+
+/* Sleep stage colors */
+.stage-deep { @apply bg-sleep-deep; }
+.stage-rem { @apply bg-sleep-rem; }
+.stage-light { @apply bg-sleep-light; }
+.stage-awake { @apply bg-sleep-awake; }
+
+/* Buttons */
+.btn {
+  @apply px-4 py-2 rounded-md font-medium text-sm transition-all duration-200;
+}
+
+.btn-primary {
+  @apply bg-cyan-500 text-void-950 hover:bg-cyan-400;
+}
+
+.btn-secondary {
+  @apply bg-void-700 text-zinc-300 border border-void-600 hover:bg-void-600;
+}
+
+.btn-ghost {
+  @apply text-zinc-400 hover:text-white hover:bg-void-700/50;
+}
+
+/* Form inputs */
+.input {
+  @apply bg-void-800 border border-void-600 rounded-md px-3 py-2 text-white
+         placeholder-zinc-600 focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/20;
+}
+
+/* Tags / Badges */
+.badge {
+  @apply inline-flex items-center px-2 py-0.5 rounded text-xs font-medium font-mono;
+}
+
+.badge-cyan {
+  @apply bg-cyan-500/10 text-cyan-400 border border-cyan-500/20;
+}
+
+.badge-coral {
+  @apply bg-coral-500/10 text-coral-400 border border-coral-500/20;
+}
+
+.badge-amber {
+  @apply bg-amber-500/10 text-amber-400 border border-amber-500/20;
+}
+
+.badge-emerald {
+  @apply bg-emerald-500/10 text-emerald-400 border border-emerald-500/20;
+}
+
+.badge-violet {
+  @apply bg-violet-500/10 text-violet-400 border border-violet-500/20;
+}
+
+/* Quality indicators */
+.quality-good { @apply text-emerald-400; }
+.quality-warning { @apply text-amber-400; }
+.quality-bad { @apply text-coral-400; }
+
+/* Drag and drop zone */
+.dropzone {
+  @apply border-2 border-dashed border-void-600 rounded-lg p-8 text-center
+         transition-all duration-200 cursor-pointer hover:border-cyan-500/50 hover:bg-cyan-500/5;
+}
+
+.dropzone.active {
+  @apply border-cyan-500 bg-cyan-500/10;
+}
+
+/* Chart container */
+.chart-container {
+  @apply relative h-64;
+}
+
+/* Card (legacy support) */
+.card {
+  @apply data-panel p-4;
+}
+
+/* Stat card (legacy support) */
+.stat-value {
+  @apply metric-value-sm text-cyan-400;
+}
+
+.stat-label {
+  @apply metric-label mt-2;
+}
+
+/* Animation utilities */
+.animate-stagger-1 { animation-delay: 0.1s; }
+.animate-stagger-2 { animation-delay: 0.2s; }
+.animate-stagger-3 { animation-delay: 0.3s; }
+.animate-stagger-4 { animation-delay: 0.4s; }
+.animate-stagger-5 { animation-delay: 0.5s; }
+
+/* Grid pattern overlay */
+.grid-pattern {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Gradient borders */
+.gradient-border {
+  position: relative;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.3), rgba(139, 92, 246, 0.3));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+/* Disclaimer styling */
+.disclaimer {
+  @apply text-xs text-zinc-600 italic p-3 bg-void-900 rounded border border-void-700;
+}

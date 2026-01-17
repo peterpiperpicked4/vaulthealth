@@ -1,0 +1,34 @@
+[build]
+  base = "app"
+  publish = "dist"
+  command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[functions]
+  directory = "../netlify/functions"
+  node_bundler = "esbuild"
+
+# Redirect API calls to Netlify Functions
+[[redirects]]
+  from = "/api/chat"
+  to = "/.netlify/functions/chat"
+  status = 200
+
+[[redirects]]
+  from = "/api/chat/health"
+  to = "/.netlify/functions/chat-health"
+  status = 200
+
+# SPA fallback - serve index.html for all routes
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[dev]
+  command = "npm run dev"
+  targetPort = 5173
+  port = 8888
+  autoLaunch = false

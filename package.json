@@ -1,0 +1,19 @@
+{
+  "name": "vaulthealth",
+  "version": "1.0.0",
+  "private": true,
+  "description": "VaultHealth - Local-first health data vault with AI insights",
+  "scripts": {
+    "dev": "cd app && npm run dev",
+    "build": "cd app && npm run build",
+    "dev:server": "cd server && npm run dev",
+    "dev:all": "npm-run-all --parallel dev dev:server"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.32.1",
+    "@netlify/functions": "^2.8.2"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  }
+}

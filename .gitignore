@@ -1,0 +1,50 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build output
+dist/
+build/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Netlify
+.netlify/
+
+# Test coverage
+coverage/
+
+# Private/personal data - NEVER commit
+Peter_Private_Data_Apple/
+*_Private_Data_*/
+*.xml
+dashboard_data.json
+apple_health_import.json
+annotations.json
+
+# Python analysis files
+*.py
+*.png
+*.html
+
+# Temporary files
+tmp/
+app/tmp/
