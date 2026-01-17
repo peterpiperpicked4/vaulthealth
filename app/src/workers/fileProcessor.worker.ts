@@ -16,7 +16,7 @@
  */
 
 const SOFT_LIMIT_BYTES = 100 * 1024 * 1024; // 100MB
-const HARD_LIMIT_BYTES = 500 * 1024 * 1024; // 500MB
+const HARD_LIMIT_BYTES = 600 * 1024 * 1024; // 600MB
 const CHUNK_SIZE = 1024 * 1024; // 1MB chunks for progress reporting
 
 interface WorkerMessage {

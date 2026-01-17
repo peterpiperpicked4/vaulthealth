@@ -129,7 +129,7 @@ export function checkFileSizeWarning(sizeBytes: number): {
   message: string;
 } {
   const SOFT_LIMIT = 100 * 1024 * 1024; // 100MB
-  const HARD_LIMIT = 500 * 1024 * 1024; // 500MB
+  const HARD_LIMIT = 600 * 1024 * 1024; // 600MB
 
   if (sizeBytes > HARD_LIMIT) {
     return {
