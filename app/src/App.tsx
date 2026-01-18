@@ -1,5 +1,15 @@
+/**
+ * VaultHealth App
+ * ================
+ * AI-first conversational health intelligence platform.
+ *
+ * The new UI puts chat at the center - you don't use the app, you talk to your data.
+ * Legacy dashboard is still available via feature flag for rollback.
+ */
+
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { ConversationalHome } from './components/ConversationalHome';
 import Dashboard from './components/Dashboard';
 import ImportPage from './components/ImportPage';
 import DataQualityPage from './components/DataQualityPage';
@@ -7,7 +17,24 @@ import SettingsPage from './components/SettingsPage';
 import ChatPage from './components/ChatPage';
 import { count } from './db/database';
 
+// Feature flag for new conversational UI
+// Set VITE_NEW_UI=true in .env to enable, or false to use legacy dashboard
+const USE_NEW_UI = import.meta.env.VITE_NEW_UI !== 'false';
+
 function App() {
+  // Use new conversational UI by default
+  if (USE_NEW_UI) {
+    return <ConversationalHome />;
+  }
+
+  // Legacy dashboard UI (kept for rollback)
+  return <LegacyApp />;
+}
+
+/**
+ * Legacy App with router-based navigation
+ */
+function LegacyApp() {
   const location = useLocation();
   const [sessionCount, setSessionCount] = useState(0);
 

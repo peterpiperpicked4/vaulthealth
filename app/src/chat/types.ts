@@ -4,12 +4,39 @@
  * Type definitions for the AI chat feature.
  */
 
+// Inline Visualization Types
+export type Visualization =
+  | { type: 'trend'; metric: 'sleep' | 'quality' | 'hrv' | 'hr'; days: number; data?: TrendDataPoint[] }
+  | { type: 'sleep-stack'; date: string; data?: SleepStackData }
+  | { type: 'metric'; value: number; unit: string; label: string; trend?: 'up' | 'down' | 'stable'; trendValue?: string }
+  | { type: 'comparison'; metric: string; periods: [ComparePeriod, ComparePeriod] };
+
+export interface TrendDataPoint {
+  date: string;
+  value: number;
+}
+
+export interface SleepStackData {
+  deepPercent: number;
+  remPercent: number;
+  lightPercent: number;
+  awakePercent: number;
+  totalHours: number;
+}
+
+export interface ComparePeriod {
+  label: string;
+  value: number;
+  unit: string;
+}
+
 export interface ChatMessage {
   id: string;
   role: 'user' | 'assistant';
   content: string;
   timestamp: string;
   isStreaming?: boolean;
+  visualizations?: Visualization[];
 }
 
 export interface SleepSessionSummary {

@@ -5,27 +5,53 @@
 @tailwind utilities;
 
 /* ============================================
-   PRECISION OBSERVATORY THEME
+   VAULTHEALTH PREMIUM - OLED-OPTIMIZED THEME
    ============================================ */
 
 :root {
   color-scheme: dark;
-  --void-950: #030508;
-  --void-900: #060a12;
-  --void-850: #0a0e1a;
-  --void-800: #0d1424;
-  --void-700: #131c32;
-  --void-600: #1a2642;
 
+  /* True black for OLED */
+  --background-primary: #000000;
+  --background-secondary: #0a0a0a;
+  --background-tertiary: #141414;
+  --background-elevated: #1c1c1e;
+
+  /* Text hierarchy */
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --text-tertiary: rgba(255, 255, 255, 0.5);
+  --text-quaternary: rgba(255, 255, 255, 0.3);
+
+  /* AI bubble colors */
+  --ai-bubble: rgba(139, 92, 246, 0.15);
+  --ai-border: rgba(139, 92, 246, 0.25);
+  --ai-accent: #a78bfa;
+
+  /* User bubble colors */
+  --user-bubble: rgba(6, 182, 212, 0.15);
+  --user-border: rgba(6, 182, 212, 0.25);
+  --user-accent: #22d3ee;
+
+  /* Borders */
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-muted: rgba(255, 255, 255, 0.1);
+  --border-default: rgba(255, 255, 255, 0.15);
+
+  /* Glows */
   --cyan-glow: 0 0 20px rgba(6, 182, 212, 0.3);
+  --violet-glow: 0 0 20px rgba(139, 92, 246, 0.3);
+  --emerald-glow: 0 0 20px rgba(52, 211, 153, 0.3);
   --coral-glow: 0 0 20px rgba(244, 63, 94, 0.3);
-  --emerald-glow: 0 0 20px rgba(16, 185, 129, 0.3);
 }
 
-/* Base */
+/* Base - True black for OLED displays */
 body {
   @apply bg-void-950 text-zinc-400 antialiased;
   font-family: 'Inter', system-ui, sans-serif;
+  background-color: var(--background-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Typography */
@@ -219,4 +245,174 @@ body {
 /* Disclaimer styling */
 .disclaimer {
   @apply text-xs text-zinc-600 italic p-3 bg-void-900 rounded border border-void-700;
+}
+
+/* ============================================
+   CONVERSATIONAL UI - PREMIUM STYLES
+   ============================================ */
+
+/* Chat canvas - full viewport conversational area */
+.chat-canvas {
+  @apply min-h-screen flex flex-col;
+  background: var(--background-primary);
+}
+
+/* Message bubbles - AI responses */
+.message-bubble-ai {
+  @apply rounded-2xl rounded-bl-md px-4 py-3 max-w-[85%];
+  background: var(--ai-bubble);
+  border: 1px solid var(--ai-border);
+}
+
+/* Message bubbles - User messages */
+.message-bubble-user {
+  @apply rounded-2xl rounded-br-md px-4 py-3 max-w-[85%];
+  background: var(--user-bubble);
+  border: 1px solid var(--user-border);
+}
+
+/* Premium input field */
+.chat-input {
+  @apply w-full px-4 py-3 rounded-2xl text-white placeholder-zinc-600 transition-all duration-200;
+  background: var(--background-elevated);
+  border: 1px solid var(--border-muted);
+}
+
+.chat-input:focus {
+  @apply outline-none;
+  border-color: var(--user-accent);
+  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1);
+}
+
+/* Typing indicator */
+.typing-indicator {
+  @apply flex items-center gap-1.5;
+}
+
+.typing-dot {
+  @apply w-2 h-2 rounded-full bg-violet-400;
+  animation: typing 1.4s ease-in-out infinite;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* Quick access bar */
+.quick-access-bar {
+  @apply fixed top-0 right-0 flex items-center gap-2 p-4 z-50;
+}
+
+/* Overlay panel */
+.overlay-panel {
+  @apply fixed inset-y-0 right-0 w-full max-w-md z-50;
+  background: var(--background-secondary);
+  border-left: 1px solid var(--border-subtle);
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
+}
+
+.overlay-backdrop {
+  @apply fixed inset-0 z-40;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+}
+
+/* Inline visualization card */
+.inline-viz {
+  @apply rounded-xl p-3 mt-3;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border-subtle);
+}
+
+/* Sparkline container */
+.sparkline-container {
+  @apply h-12 w-full;
+}
+
+/* Sleep stack bar */
+.sleep-stack {
+  @apply h-3 rounded-full overflow-hidden flex;
+}
+
+/* Metric card inline */
+.metric-inline {
+  @apply flex items-center gap-3 p-3 rounded-xl;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border-subtle);
+}
+
+/* Proactive greeting */
+.greeting-container {
+  @apply text-center py-8 px-4;
+}
+
+.greeting-text {
+  @apply text-display-sm text-white mb-2;
+}
+
+.greeting-subtext {
+  @apply text-body-md text-zinc-400;
+}
+
+/* Starter questions */
+.starter-questions {
+  @apply flex flex-wrap justify-center gap-2 mt-6;
+}
+
+.starter-question-btn {
+  @apply px-4 py-2 rounded-xl text-sm transition-all duration-200;
+  background: var(--background-elevated);
+  border: 1px solid var(--border-muted);
+  color: var(--text-secondary);
+}
+
+.starter-question-btn:hover {
+  background: var(--background-tertiary);
+  border-color: var(--border-default);
+  color: var(--text-primary);
+}
+
+/* Premium send button */
+.send-button {
+  @apply px-4 py-2 rounded-xl font-medium transition-all duration-200;
+  background: linear-gradient(135deg, #06b6d4, #0891b2);
+  color: #000000;
+}
+
+.send-button:hover:not(:disabled) {
+  box-shadow: var(--cyan-glow);
+  transform: translateY(-1px);
+}
+
+.send-button:disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+/* Scroll fade at bottom */
+.scroll-fade {
+  @apply pointer-events-none fixed bottom-0 left-0 right-0 h-24;
+  background: linear-gradient(to top, var(--background-primary), transparent);
+}
+
+/* Status indicator */
+.status-dot {
+  @apply w-2 h-2 rounded-full;
+}
+
+.status-dot-online {
+  @apply bg-emerald-400;
+  box-shadow: 0 0 8px rgba(52, 211, 153, 0.5);
+}
+
+.status-dot-offline {
+  @apply bg-coral-400;
+  box-shadow: 0 0 8px rgba(244, 63, 94, 0.5);
+}
+
+.status-dot-connecting {
+  @apply bg-amber-400 animate-pulse;
 }
